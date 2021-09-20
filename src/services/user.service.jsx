@@ -37,7 +37,7 @@ const getData = async () => {
 // Find detail
 const getDetail = async () => {
   try {
-    const post = await getDoc(doc(db, "posts", "kat1eguhr988qyaIFAjm"));
+    const post = await getDoc(doc(db, "posts", "nrqADUnWkk4rhI9jzmwu"));
     const user = await getDoc(post.data().userId);
     console.log(user.data());
   } catch (error) {

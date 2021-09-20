@@ -4,6 +4,12 @@ import {
   signInWithGoogle,
 } from "./services/auth.service";
 import {
+  downloadFile,
+  getDownloadURI,
+  getFile,
+  uploadFiles,
+} from "./services/file.service";
+import {
   addNewData,
   deleteOne,
   getData,
@@ -36,7 +42,28 @@ function App() {
     registerWithEmailAndPass(username, password, email);
   };
 
-  const uploadFiles = () => {};
+  const uploadMultiFiles = (event) => {
+    event.preventDefault();
+    const files = document.getElementById("files").files;
+    let content = ``;
+    for (let index = 0; index < files.length; index++) {
+      content += `<span>${files[index].name} </span>`;
+    }
+    document.getElementById("filename").innerHTML = content;
+    uploadFiles(files);
+  };
+
+  // const getURL = async () => {
+  //   try {
+  //     const url = await getDownloadURI("1632137429019-ME.jpg");
+  //     document.getElementById("filename").innerHTML = `
+  //       <img src=${url} width="500px">
+  //     `;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // getURL();
 
   return (
     <div>
@@ -52,10 +79,19 @@ function App() {
         <input type="email" id="email" name="email" />
         <button type="submit">Register</button>
       </form>
-      <form onSubmit={uploadFiles}>
-        <input type="file" id="files" name="files" />
+      <form onSubmit={uploadMultiFiles}>
+        <input type="file" id="files" name="files" multiple={true} />
         <button type="submit">Upload</button>
       </form>
+      <div id="filename"></div>
+      <button
+        type="button"
+        onClick={() => {
+          downloadFile("1632143713574-DEDD7764.JPG");
+        }}
+      >
+        download
+      </button>
     </div>
   );
 }
