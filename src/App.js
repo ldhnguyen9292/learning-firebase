@@ -9,6 +9,7 @@ import {
   getFile,
   uploadFiles,
 } from "./services/file.service";
+import { receiveMess } from "./services/noti.service";
 import {
   addNewData,
   deleteOne,
@@ -64,6 +65,9 @@ function App() {
   //   }
   // };
   // getURL();
+
+  // messaging
+  receiveMess();
 
   return (
     <div>

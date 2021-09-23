@@ -1,4 +1,4 @@
-import { db } from "../configs/firebase.config";
+import { app } from "../configs/firebase.config";
 import {
   collection,
   getDocs,
@@ -7,7 +7,10 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  getFirestore,
 } from "firebase/firestore/lite";
+
+const db = getFirestore(app); // connect firestore
 
 // Add a new document with a generated id.
 const addNewData = async () => {

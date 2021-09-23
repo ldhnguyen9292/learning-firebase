@@ -1,10 +1,11 @@
-import { db, auth } from "./../configs/firebase.config";
+import { app } from "./../configs/firebase.config";
 import {
   getDocs,
   collection,
   where,
   query,
   addDoc,
+  getFirestore,
 } from "firebase/firestore/lite";
 import {
   GoogleAuthProvider,
@@ -13,7 +14,11 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  getAuth,
 } from "firebase/auth";
+
+const db = getFirestore(app); // connect firestore
+const auth = getAuth(app); // create auth
 
 const signInWithGoogle = async () => {
   const googleProvider = new GoogleAuthProvider();

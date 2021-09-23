@@ -3,8 +3,11 @@ import {
   uploadBytes,
   getMetadata,
   getDownloadURL,
+  getStorage,
 } from "firebase/storage";
-import { storage } from "../configs/firebase.config";
+import { app } from "../configs/firebase.config";
+
+const storage = getStorage(app); // connect storage
 
 const uploadFiles = async (files) => {
   for (let index = 0; index < files.length; index++) {
